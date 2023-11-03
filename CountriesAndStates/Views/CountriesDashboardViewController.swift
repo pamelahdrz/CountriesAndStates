@@ -18,6 +18,11 @@ class CountriesDashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initCountriesView()
+        self.setupView()
+    }
+    
+    private func setupView() {
+        self.viewModel.viewController = self
     }
     
     private func initCountriesView() {
@@ -37,15 +42,6 @@ class CountriesDashboardViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    func navigateToMap(with data: ValuesGetPaises) {
-        guard let idPais = data.idPais else { return }
-        
-        let destination = MapStatesViewController()
-        destination.modalPresentationStyle = .fullScreen
-        destination.idPais = idPais
-        self.navigationController?.pushViewController(destination, animated: true)
     }
 }
 
@@ -77,7 +73,7 @@ extension CountriesDashboardViewController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch self.viewModel.valuesResponse[indexPath.section] {
         case .countries(let data):
-            self.navigateToMap(with: data[indexPath.row])
+            self.viewModel.performSegue(with: data[indexPath.row])
         }
     }
 }

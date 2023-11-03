@@ -206,6 +206,7 @@
 		6615FB742AF3B803001E21BF /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				66CEC8D62AF0996B00400EE4 /* SoapRequestDataTask.swift */,
 				6615FB7E2AF45020001E21BF /* Extensions */,
 				6615FB772AF3B868001E21BF /* GeneralConstants */,
 				6615FB752AF3B810001E21BF /* GeneralRequestDispatcher */,
@@ -289,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				6615FB742AF3B803001E21BF /* Commons */,
-				66CEC8D62AF0996B00400EE4 /* SoapRequestDataTask.swift */,
 				6615FB6D2AF3B18B001E21BF /* Models */,
 				6615FB712AF3B5BD001E21BF /* Views */,
 				6615FB782AF3B8BB001E21BF /* ViewModels */,
@@ -697,6 +697,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CountriesAndStates/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FindStates;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For reability, we need to use you location in order to search for locations.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -727,6 +728,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CountriesAndStates/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FindStates;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For reability, we need to use you location in order to search for locations.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

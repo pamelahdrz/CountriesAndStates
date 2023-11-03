@@ -10,10 +10,12 @@ import UIKit
 import MapKit
 
 protocol MapStatesControllerDelegate: AnyObject {
-    func statesParameter(idPais: Int)
+    func statesParameter(idPais: Int, country: String)
 }
 
 final class MapStatesViewModel {
+    
+    weak var viewController: UIViewController?
     
     var valuesStates = [ValuesStates]()
     var customAnnotationA = [CustomAnnotation]()
@@ -29,13 +31,12 @@ final class MapStatesViewModel {
                             let latitude : String = coordinates[0]
                             let longitude : String = coordinates[1]
                             
+                            ///ValuesStates Array
                             let values = ValuesStates(idEstado, estadoNombre, latitude.toDouble() ?? 0.0, longitude.toDouble() ?? 0.0, idPais)
                             self.valuesStates.append(values)
                             
                             ///CustomAnnotation Array
-                            let subtitleMessage = "Coordinates: Latitude: \(latitude), Longitude:\(longitude)"
-                            let customAnnotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: latitude.toDouble() ?? 0.0, longitude: longitude.toDouble() ?? 0.0), title: estadoNombre, subtitle: subtitleMessage)
-                            
+                            let customAnnotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: latitude.toDouble() ?? 0.0, longitude: longitude.toDouble() ?? 0.0), stateName: estadoNombre)
                             self.customAnnotationA.append(customAnnotation)
                         }
                     }
@@ -47,5 +48,15 @@ final class MapStatesViewModel {
                 print("Error en SoapRequest: \(response.response?.statusCode ?? 0)")
             }
         }
+    }
+    
+    func configureAlertView(with stateName: String, latitude: Double, longitude: Double, country: String) {
+        let message = "Country: \(country)\n Latitude: \(latitude)\n Longitude: \(longitude)"
+        
+        let alert = UIAlertController(title: stateName, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(OKAction)
+        
+        self.viewController?.navigationController?.present(alert, animated: true, completion: nil)
     }
 }

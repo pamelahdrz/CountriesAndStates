@@ -9,24 +9,44 @@ import Foundation
 import UIKit
 import MapKit
 
+///Region to show in MapView
+private struct RegionCoordenates {
+    enum MexicoCoordinates: Double {
+        case latitude = 24.4535256
+        case longitude = -102.9779177
+    }
+    
+    enum USACoordinates: Double {
+        case latitude = 40.2116194
+        case longitude = -117.8427562
+    }
+}
+
 class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, MapStatesControllerDelegate {
     
-    var idPais: Int?
+    var idPais: Int? = 0
+    var country: String? = ""
     
     @IBOutlet weak var mapView: MKMapView!
     
     private var viewModel = MapStatesViewModel()
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
-    func statesParameter(idPais: Int) {
+    func statesParameter(idPais: Int, country: String) {
         self.idPais = idPais
+        self.country = country
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureNavigationBar()
+        self.setupView()
         self.configureMapView()
         self.initMapView()
+    }
+    
+    private func setupView() {
+        self.viewModel.viewController = self
+        self.configureNavigationBar()
     }
     
     @available(iOS 15.0, *)
@@ -41,11 +61,14 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
     }
     
     private func configureMapView() {
+        ///CLLocationManagerDelegate Configuration
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.startUpdatingLocation()
         self.locationManager.requestLocation()
+        ///MKMapViewDelegate Configuration
+        self.mapView.delegate = self
     }
     
     private func initMapView() {
@@ -53,6 +76,7 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
             if success {
                 DispatchQueue.main.async {
                     self.displayMultipleAnnotations()
+                    self.setSpecificRegion()
                 }
             }
         }
@@ -64,6 +88,21 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
         }
     }
     
+    private func setSpecificRegion() {
+        let country = Country(rawValue: self.country ?? "")
+        
+        switch country {
+        case .Mexico:
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordenates.MexicoCoordinates.latitude.rawValue, longitude: RegionCoordenates.MexicoCoordinates.longitude.rawValue), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
+            mapView.setRegion(region, animated: true)
+        case .USA:
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordenates.USACoordinates.latitude.rawValue, longitude: RegionCoordenates.USACoordinates.longitude.rawValue), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
+            mapView.setRegion(region, animated: true)
+        case .none:
+            break
+        }
+    }
+    
     @objc private func backAction() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -72,25 +111,37 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
 extension MapStatesViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        ///
+        ///CLLocationManagerDelegate
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        ///
+        ///CLLocationManagerDelegate
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is CustomAnnotation else {return nil}
         
         let identifier = "CustomAnnotation"
-        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        pin.pinTintColor = .red
+        annotationView = pin
         
-        //annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-        annotationView?.canShowCallout = true
+        ///Add Callout To Annotation View
+        //annotationView?.canShowCallout = true
         
         //let buttonAnnotation = UIButton(type: .detailDisclosure)
         //annotationView?.rightCalloutAccessoryView = buttonAnnotation
+        
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let selectedAnnotation = view.annotation as? CustomAnnotation else { return }
+        
+        if let stateName = selectedAnnotation.stateName, let country = self.country {
+            self.viewModel.configureAlertView(with: stateName, latitude: selectedAnnotation.coordinate.latitude, longitude: selectedAnnotation.coordinate.longitude, country: country)
+        }
     }
 }
 

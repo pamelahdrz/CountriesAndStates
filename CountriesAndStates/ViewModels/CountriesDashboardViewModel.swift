@@ -19,6 +19,8 @@ enum CountriesCellModel {
 
 final class CountriesDashboardViewModel {
     
+    weak var viewController: UIViewController?
+    
     var valuesResponse = [CountriesCellModel]()
     
     var numberOfCountries: Int {
@@ -38,5 +40,17 @@ final class CountriesDashboardViewModel {
                 print("Error en SoapRequest: \(response.response?.statusCode ?? 0)")
             }
         }
+    }
+    
+    func performSegue(with data: ValuesGetPaises) {
+        let destination = MapStatesViewController()
+        destination.modalPresentationStyle = .fullScreen
+        
+        if let idPais = data.idPais, let country = data.nombrePais {
+            destination.idPais = idPais
+            destination.country = country
+        }
+        
+        self.viewController?.navigationController?.pushViewController(destination, animated: true)
     }
 }

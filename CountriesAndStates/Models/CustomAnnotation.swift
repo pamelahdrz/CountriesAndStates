@@ -10,13 +10,10 @@ import MapKit
 class CustomAnnotation: NSObject, MKAnnotation {
 
     var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
+    var stateName: String?
 
-    init(coordinate:CLLocationCoordinate2D, title: String?, subtitle:
-    String?){
+    init(coordinate:CLLocationCoordinate2D, stateName: String) {
         self.coordinate = coordinate
-        self.title = title
-        self.subtitle = subtitle
+        self.stateName = stateName
     }
 }
