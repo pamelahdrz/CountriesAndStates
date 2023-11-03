@@ -30,10 +30,9 @@
 		661D585E2AF0C80500B58F3D /* CountriesDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D585D2AF0C80500B58F3D /* CountriesDashboardViewController.swift */; };
 		661D58632AF0DFE200B58F3D /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D58622AF0DFE200B58F3D /* CountryTableViewCell.swift */; };
 		661D58652AF0E34D00B58F3D /* GeneralConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D58642AF0E34D00B58F3D /* GeneralConstants.swift */; };
-		661D58672AF0E8C500B58F3D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661D58662AF0E8C500B58F3D /* MapViewController.swift */; };
 		66CEC8D32AF0996B00400EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC8D22AF0996B00400EE4 /* AppDelegate.swift */; };
 		66CEC8D52AF0996B00400EE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC8D42AF0996B00400EE4 /* SceneDelegate.swift */; };
-		66CEC8D72AF0996B00400EE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC8D62AF0996B00400EE4 /* ViewController.swift */; };
+		66CEC8D72AF0996B00400EE4 /* SoapRequestDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC8D62AF0996B00400EE4 /* SoapRequestDataTask.swift */; };
 		66CEC8DC2AF0996D00400EE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66CEC8DB2AF0996D00400EE4 /* Assets.xcassets */; };
 		66CEC8DF2AF0996D00400EE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CEC8DD2AF0996D00400EE4 /* LaunchScreen.storyboard */; };
 		66CEC8EA2AF0996D00400EE4 /* CountriesAndStatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC8E92AF0996D00400EE4 /* CountriesAndStatesTests.swift */; };
@@ -91,11 +90,10 @@
 		661D585D2AF0C80500B58F3D /* CountriesDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesDashboardViewController.swift; sourceTree = "<group>"; };
 		661D58622AF0DFE200B58F3D /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		661D58642AF0E34D00B58F3D /* GeneralConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralConstants.swift; sourceTree = "<group>"; };
-		661D58662AF0E8C500B58F3D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		66CEC8CF2AF0996B00400EE4 /* CountriesAndStates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountriesAndStates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CEC8D22AF0996B00400EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66CEC8D42AF0996B00400EE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		66CEC8D62AF0996B00400EE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		66CEC8D62AF0996B00400EE4 /* SoapRequestDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoapRequestDataTask.swift; sourceTree = "<group>"; };
 		66CEC8DB2AF0996D00400EE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66CEC8DE2AF0996D00400EE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66CEC8E02AF0996D00400EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -291,13 +289,12 @@
 			isa = PBXGroup;
 			children = (
 				6615FB742AF3B803001E21BF /* Commons */,
+				66CEC8D62AF0996B00400EE4 /* SoapRequestDataTask.swift */,
 				6615FB6D2AF3B18B001E21BF /* Models */,
 				6615FB712AF3B5BD001E21BF /* Views */,
 				6615FB782AF3B8BB001E21BF /* ViewModels */,
 				66CEC8D22AF0996B00400EE4 /* AppDelegate.swift */,
 				66CEC8D42AF0996B00400EE4 /* SceneDelegate.swift */,
-				66CEC8D62AF0996B00400EE4 /* ViewController.swift */,
-				661D58662AF0E8C500B58F3D /* MapViewController.swift */,
 				66CEC8E02AF0996D00400EE4 /* Info.plist */,
 				66D980502AF4EC2F00112CC0 /* GoogleService-Info.plist */,
 				6615FB6E2AF3B316001E21BF /* Resources */,
@@ -505,7 +502,7 @@
 				6615FB552AF31241001E21BF /* SoapInformation.swift in Sources */,
 				6615FB4F2AF311E7001E21BF /* SoapMessage.swift in Sources */,
 				6615FB862AF47B21001E21BF /* MapStatesViewModel.swift in Sources */,
-				66CEC8D72AF0996B00400EE4 /* ViewController.swift in Sources */,
+				66CEC8D72AF0996B00400EE4 /* SoapRequestDataTask.swift in Sources */,
 				6615FB4D2AF311B5001E21BF /* SoapEnvelope.swift in Sources */,
 				6615FB892AF47C5C001E21BF /* GetEstadosbyPaisResponse.swift in Sources */,
 				6615FB6B2AF36F13001E21BF /* TagsGetPaises.swift in Sources */,
@@ -519,7 +516,6 @@
 				6615FB582AF31994001E21BF /* SoapEnvelopeResponse.swift in Sources */,
 				66D9803C2AF4BFF000112CC0 /* ValuesStates.swift in Sources */,
 				661D58632AF0DFE200B58F3D /* CountryTableViewCell.swift in Sources */,
-				661D58672AF0E8C500B58F3D /* MapViewController.swift in Sources */,
 				6615FB822AF47798001E21BF /* MapStatesViewController.swift in Sources */,
 				6615FB4A2AF30E3F001E21BF /* GeneralRequestDispatcher.swift in Sources */,
 				6615FB532AF31223001E21BF /* SoapHeader.swift in Sources */,

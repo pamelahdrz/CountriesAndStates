@@ -83,7 +83,7 @@ extension MapStatesViewController: CLLocationManagerDelegate, MKMapViewDelegate 
         guard annotation is CustomAnnotation else {return nil}
         
         let identifier = "CustomAnnotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         
         //annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         annotationView?.canShowCallout = true

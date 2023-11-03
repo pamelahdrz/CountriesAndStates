@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+///Example of Soap Request with
+class SoapRequestDataTask: UIViewController {
     
     var is_SoapMessage = "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><GetPaises xmlns=\"http://tempuri.org/\" /></soap:Body></soap:Envelope>"
 
