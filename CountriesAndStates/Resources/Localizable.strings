@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  CountriesAndStates
+
+  Created by Pamela Hernández on 02/11/23.
+  
+*/
+
+"countries_navigation_title" = "All Countries";
+"countries_and_states_navigation_title" = "Countries and States";
