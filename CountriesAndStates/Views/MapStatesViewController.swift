@@ -11,26 +11,27 @@ import MapKit
 
 ///Region to show in MapView
 private struct RegionCoordenates {
-    enum MexicoCoordinates: Double {
-        case latitude = 24.4535256
-        case longitude = -102.9779177
-    }
-    
-    enum USACoordinates: Double {
-        case latitude = 40.2116194
-        case longitude = -117.8427562
-    }
+    var mexico: (latitude: Double, longitude: Double)
+    var usa: (latitude: Double, longitude: Double)
 }
 
 class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, MapStatesControllerDelegate {
     
-    var idPais: Int? = 0
-    var country: String? = ""
+    var idPais: Int?
+    var country: String?
     
     @IBOutlet weak var mapView: MKMapView!
     
     private var viewModel = MapStatesViewModel()
     private let locationManager = CLLocationManager()
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func statesParameter(idPais: Int, country: String) {
         self.idPais = idPais
@@ -90,13 +91,13 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
     
     private func setSpecificRegion() {
         let country = Country(rawValue: self.country ?? "")
-        
+        let coordinates: RegionCoordenates = RegionCoordenates(mexico: (24.4535256, -102.9779177), usa: (40.2116194, -117.8427562))
         switch country {
         case .Mexico:
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordenates.MexicoCoordinates.latitude.rawValue, longitude: RegionCoordenates.MexicoCoordinates.longitude.rawValue), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinates.mexico.latitude, longitude: coordinates.mexico.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
             mapView.setRegion(region, animated: true)
         case .USA:
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordenates.USACoordinates.latitude.rawValue, longitude: RegionCoordenates.USACoordinates.longitude.rawValue), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinates.usa.latitude, longitude: coordinates.usa.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
             mapView.setRegion(region, animated: true)
         case .none:
             break
