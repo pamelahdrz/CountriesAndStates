@@ -51,7 +51,11 @@ final class MapStatesViewModel {
     }
     
     func configureAlertView(with stateName: String, latitude: Double, longitude: Double, country: String) {
-        let message = "Country: \(country)\n Latitude: \(latitude)\n Longitude: \(longitude)"
+        let message = """
+                       Country: \(country)
+                       Latitude: \(latitude)
+                       Longitude: \(longitude)
+                       """
         
         let alert = UIAlertController(title: stateName, message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default)
