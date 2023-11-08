@@ -20,6 +20,10 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
     var idPais: Int?
     var country: String?
     
+    ///Coordinates for Region
+    var latitude: Double?
+    var longitude: Double?
+    
     @IBOutlet weak var mapView: MKMapView!
     
     private var viewModel = MapStatesViewModel()
@@ -91,16 +95,20 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
     
     private func setSpecificRegion() {
         let country = Country(rawValue: self.country ?? "")
+        
         switch country {
         case .Mexico:
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordinates.mexico.latitude, longitude: RegionCoordinates.mexico.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
-            mapView.setRegion(region, animated: true)
+            latitude = RegionCoordinates.mexico.latitude
+            longitude = RegionCoordinates.mexico.longitude
         case .USA:
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordinates.usa.latitude, longitude: RegionCoordinates.usa.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
-            mapView.setRegion(region, animated: true)
+            latitude = RegionCoordinates.usa.latitude
+            longitude = RegionCoordinates.usa.longitude
         case .none:
             break
         }
+        
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude ?? 0.0, longitude: longitude ?? 0.0), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
+        mapView.setRegion(region, animated: true)
     }
     
     @objc private func backAction() {
