@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 ///Region to show in MapView
-private enum RegionCoordenates {
+private enum RegionCoordinates {
     static let mexico: (latitude: Double, longitude: Double) = (24.4535256, -102.9779177)
     static let usa: (latitude: Double, longitude: Double) = (40.2116194, -117.8427562)
 }
@@ -93,10 +93,10 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
         let country = Country(rawValue: self.country ?? "")
         switch country {
         case .Mexico:
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordenates.mexico.latitude, longitude: RegionCoordenates.mexico.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordinates.mexico.latitude, longitude: RegionCoordinates.mexico.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
             mapView.setRegion(region, animated: true)
         case .USA:
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordenates.usa.latitude, longitude: RegionCoordenates.usa.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: RegionCoordinates.usa.latitude, longitude: RegionCoordinates.usa.longitude), span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30))
             mapView.setRegion(region, animated: true)
         case .none:
             break
