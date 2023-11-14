@@ -148,7 +148,7 @@ extension MapStatesViewController: CLLocationManagerDelegate, MKMapViewDelegate 
         guard let selectedAnnotation = view.annotation as? CustomAnnotation else { return }
         
         if let stateName = selectedAnnotation.stateName, let country = self.country {
-            self.viewModel.configureAlertView(with: stateName, latitude: selectedAnnotation.coordinate.latitude, longitude: selectedAnnotation.coordinate.longitude, country: country)
+            self.viewModel.configureAlertView(with: stateName, selectedAnnotation.coordinate.latitude, selectedAnnotation.coordinate.longitude, country)
         }
     }
 }

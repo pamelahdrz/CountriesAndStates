@@ -13,6 +13,19 @@ protocol MapStatesControllerDelegate: AnyObject {
     func statesParameter(idPais: Int, country: String)
 }
 
+private struct Location {
+    
+    var getCoordinates: String
+    
+    func coordinates() -> (latitude: Double?, longitude: Double?) {
+        let coordinates: [String] = getCoordinates.components(separatedBy: ",")
+        let latitude: String = coordinates[0]
+        let longitude: String = coordinates[1]
+        
+        return (latitude.toDouble(), longitude.toDouble())
+    }
+}
+
 final class MapStatesViewModel {
     
     weak var viewController: UIViewController?
@@ -27,16 +40,15 @@ final class MapStatesViewModel {
                 if let dataStates = data.body?.getEstadosbyPaisResponse?.tagsResponse {
                     dataStates.forEach { statesInfo in
                         if let idEstado = statesInfo.idEstado, let estadoNombre = statesInfo.estadoNombre, let coordenadas = statesInfo.coordenadas, let idPais = statesInfo.idPais {
-                            let coordinates : [String] = coordenadas.components(separatedBy: ",")
-                            let latitude : String = coordinates[0]
-                            let longitude : String = coordinates[1]
+                            
+                            let location = Location(getCoordinates: coordenadas)
                             
                             ///ValuesStates Array
-                            let values = ValuesStates(idEstado, estadoNombre, latitude.toDouble() ?? 0.0, longitude.toDouble() ?? 0.0, idPais)
+                            let values = ValuesStates(idEstado, estadoNombre, location.coordinates().latitude ?? 0.0, location.coordinates().longitude ?? 0.0, idPais)
                             self.valuesStates.append(values)
                             
                             ///CustomAnnotation Array
-                            let customAnnotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: latitude.toDouble() ?? 0.0, longitude: longitude.toDouble() ?? 0.0), stateName: estadoNombre)
+                            let customAnnotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.coordinates().latitude ?? 0.0, longitude: location.coordinates().longitude ?? 0.0), stateName: estadoNombre)
                             self.customAnnotationA.append(customAnnotation)
                         }
                     }
@@ -50,7 +62,7 @@ final class MapStatesViewModel {
         }
     }
     
-    func configureAlertView(with stateName: String, latitude: Double, longitude: Double, country: String) {
+    func configureAlertView(with stateName: String, _ latitude: Double, _ longitude: Double, _ country: String) {
         let message = """
                        Country: \(country)
                        Latitude: \(latitude)
