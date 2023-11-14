@@ -36,7 +36,7 @@ final class MapStatesViewModel {
                             self.valuesStates.append(values)
                             
                             ///CustomAnnotation Array
-                            let customAnnotation = CustomAnnotation(coordinate:  CLLocationCoordinate2D(latitude: latitude.toDouble() ?? 0.0, longitude: longitude.toDouble() ?? 0.0), stateName: estadoNombre)
+                            let customAnnotation = CustomAnnotation(coordinate: CLLocationCoordinate2D(latitude: latitude.toDouble() ?? 0.0, longitude: longitude.toDouble() ?? 0.0), stateName: estadoNombre)
                             self.customAnnotationA.append(customAnnotation)
                         }
                     }

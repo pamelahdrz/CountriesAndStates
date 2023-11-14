@@ -21,10 +21,10 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
     var country: String?
     
     ///Coordinates for Region
-    var latitude: Double?
-    var longitude: Double?
+    private var latitude: Double?
+    private var longitude: Double?
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     
     private var viewModel = MapStatesViewModel()
     private let locationManager = CLLocationManager()
