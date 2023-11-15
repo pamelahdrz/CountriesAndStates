@@ -46,7 +46,7 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
         super.viewDidLoad()
         self.setupView()
         self.configureMapView()
-        self.initMapView()
+        self.populateMapView()
     }
     
     private func setupView() {
@@ -76,7 +76,7 @@ class MapStatesViewController: UIViewController, UIGestureRecognizerDelegate, Ma
         self.mapView.delegate = self
     }
     
-    private func initMapView() {
+    private func populateMapView() {
         self.viewModel.fetchStates(idPais: idPais ?? 0) { success, error in
             if success {
                 DispatchQueue.main.async {
