@@ -14,6 +14,8 @@ public typealias FetchSuccessful = (_ success : Bool, _ error : NSError?) -> ()
 public class GeneralRequestDispatcher {
     static let shared = GeneralRequestDispatcher()
     
+    let endpointServer = "https://servicesoap.azurewebsites.net/ws/Paises.asmx"
+    
     public init(){}
     
     func fetchPOSTGetPaisesContent(completionHandler: @escaping (AFDataResponse<SoapEnvelopeResponse<GetPaisesResponse>>)-> ()) {
@@ -27,7 +29,7 @@ public class GeneralRequestDispatcher {
         print(soapEnvelope.toXML())
         print("---------------------------------------------------")
         print("-----------Request Ends: GetPaises--------------")
-        AF.request("https://servicesoap.azurewebsites.net/ws/Paises.asmx", method: .post, parameters: soapEnvelope.toXML(), encoding: XMLEncoding.default).responseXMLObject { (response : AFDataResponse<SoapEnvelopeResponse<GetPaisesResponse>>) in
+        AF.request(endpointServer, method: .post, parameters: soapEnvelope.toXML(), encoding: XMLEncoding.default).responseXMLObject { (response : AFDataResponse<SoapEnvelopeResponse<GetPaisesResponse>>) in
             completionHandler(response)
             guard let responseData = response.data else {
                 print("Error en Soap: GetPaises: \(response.response?.statusCode ?? 0)")
@@ -56,7 +58,7 @@ public class GeneralRequestDispatcher {
         print("---------------------------------------------------")
         print("-----------Request Ends: GetEstadosbyPais--------------")
         
-        AF.request("https://servicesoap.azurewebsites.net/ws/Paises.asmx", method: .post, parameters: soapEnvelope.toXML(), encoding: XMLEncoding.default).responseXMLObject { (response : AFDataResponse<SoapEnvelopeResponse<GetEstadosbyPaisResponse>>) in
+        AF.request(endpointServer, method: .post, parameters: soapEnvelope.toXML(), encoding: XMLEncoding.default).responseXMLObject { (response : AFDataResponse<SoapEnvelopeResponse<GetEstadosbyPaisResponse>>) in
             completionHandler(response)
             guard let responseData = response.data else {
                 print("Error en Soap: GetEstadosbyPais: \(response.response?.statusCode ?? 0)")
