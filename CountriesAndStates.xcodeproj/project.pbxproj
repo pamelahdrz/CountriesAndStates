@@ -424,7 +424,7 @@
 			);
 			mainGroup = 66CEC8C62AF0996B00400EE4;
 			packageReferences = (
-				66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 66CEC8D02AF0996B00400EE4 /* Products */;
 			projectDirPath = "";
@@ -865,7 +865,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -878,32 +878,32 @@
 /* Begin XCSwiftPackageProductDependency section */
 		66D980432AF4EAC800112CC0 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		66D980452AF4EAC800112CC0 /* FirebaseAnalyticsOnDeviceConversion */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsOnDeviceConversion;
 		};
 		66D980472AF4EAC800112CC0 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
 		};
 		66D980492AF4EAC800112CC0 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 		66D9804B2AF4EAC800112CC0 /* FirebaseAppCheck */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAppCheck;
 		};
 		66D980532AF4F14600112CC0 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 66D980422AF4EAC700112CC0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
